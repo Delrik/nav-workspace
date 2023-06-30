@@ -1,0 +1,20 @@
+@startuml First poll rendering sequence
+[->Rendering: poll()
+activate Rendering
+Rendering->Rendering: update_map_data()
+activate Rendering
+activate AbstractMapData
+Rendering->AbstractMapData: get_junctions()
+Rendering<-AbstractMapData: return junctions
+deactivate AbstractMapData
+activate RenderingHelper
+Rendering->RenderingHelper: get_draw_items(junctions)
+Rendering<-RenderingHelper: return draw_items
+deactivate RenderingHelper
+Rendering->Rendering: draw_func(draw_items)
+
+deactivate Rendering
+Rendering -> Rendering: update_current_view()
+[<-Rendering: done
+deactivate Rendering
+@enduml

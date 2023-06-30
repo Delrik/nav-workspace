@@ -1,0 +1,41 @@
+@startuml Core
+
+class NavApp{
+    poll();
+}
+
+class RenderingHelper{
+    static DrawItem to_draw_item(const Route&);
+    static DrawItem to_draw_item(const Link&);
+    static DrawItem to_draw_item(const Junction&)
+}
+
+class Link
+class Junction
+
+class DrawItem
+
+class Rendering{
+    {field} std::function<void(DrawItem&)> draw_func;
+    poll();
+    draw(const vector<DrawItem>&);
+    draw(const DrawItem&);
+}
+
+class Routing{
+    Route calculate_route();
+}
+
+interface AbstractMapData
+
+class OsmMapData
+
+NavApp *-- Rendering
+NavApp *-- Routing
+Routing o-- AbstractMapData
+Rendering o-- AbstractMapData
+AbstractMapData <|-- OsmMapData
+Junction "1" *-- "1..*" Link
+
+hide @unlinked
+@enduml
