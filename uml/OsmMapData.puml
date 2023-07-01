@@ -1,0 +1,18 @@
+@startuml
+
+activate OsmMapData
+[->OsmMapData: load_data(source);
+OsmMapData->OsmXmlParser: init(source);
+activate OsmXmlParser
+OsmXmlParser->OsmMapData: return init_done;
+OsmMapData->OsmMapDataStatistics: init_statistic
+activate OsmMapDataStatistics
+OsmMapDataStatistics->OsmMapData: return init_done;
+OsmMapData -> OsmXmlParser: parse_source();
+OsmXmlParser -> OsmMapData: return (std::vector<variant<NodeData, WayData>>)data;
+loop for each : data
+    OsmMapData->OsmMapDataStatistics: add_to_stat(data);
+    OsmMapDataStatistics->OsmMapData: return add_done;
+end
+
+@enduml
