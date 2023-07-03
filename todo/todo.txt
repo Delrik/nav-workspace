@@ -1,3 +1,0 @@
-# Come up with an algorithm for junction IDs
-# Come up with an algorithm for links IDs. Cannot use ids as they're presented in the OSM map data, since 1 way can hold multiple links
-# Think about removing IDs for GeoCoordinates. It can be redundant.

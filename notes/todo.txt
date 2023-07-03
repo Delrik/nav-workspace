@@ -1,0 +1,2 @@
+# Need to add logger
+# Think about changing Junction::operator=(),Link::operator=(). Maybe it's enough to compare only their ids()
